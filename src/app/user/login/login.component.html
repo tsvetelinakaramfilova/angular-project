@@ -1,0 +1,80 @@
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="px-5 py-5">
+        <form class="login" #form="ngForm" (ngSubmit)="login(form)">
+          <fieldset>
+            <h2 class="mb-4 text-center">Log In</h2>
+            <div class="forms-inputs mb-4">
+              <span>Email</span>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                ngModel
+                #inputEmail="ngModel"
+                required
+                [appEmail]="domains"
+              />
+
+              <ng-container *ngIf="inputEmail.touched">
+                <p class="text-danger" *ngIf="inputEmail.errors?.['required']">
+                  Email is required!
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="inputEmail.errors?.['emailValidator']"
+                >
+                  Email is not valid!
+                </p>
+              </ng-container>
+            </div>
+
+            <div class="forms-inputs mb-4">
+              <span>Password</span>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="******"
+                ngModel
+                #inputPassword="ngModel"
+                required
+                minlength="5"
+              />
+
+              <ng-container *ngIf="inputPassword.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="inputPassword.errors?.['required']"
+                >
+                  Password is required!
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="inputPassword.errors?.['minlength']"
+                >
+                  Password must be at least 5 characters!
+                </p>
+              </ng-container>
+            </div>
+            <div class="mb-3">
+              <button
+                [disabled]="form.invalid"
+                [style]="{ backgroundColor: form.invalid ? 'grey' : 'black' }"
+                class="btn btn-dark w-100"
+              >
+                Login
+              </button>
+            </div>
+
+            <p class="text-center">
+              Have an account?
+              <a routerLink="/registration">Registration</a>
+            </p>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

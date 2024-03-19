@@ -14,23 +14,23 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav nav-underline">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+            <a class="nav-link" routerLink="/home">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/recipes">Recipes</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/registration">Registration</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/profile">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/logout">Logout</a>
-          </li>
+            <li class="nav-item" *ngIf="!isLoggedIn">
+              <a class="nav-link" routerLink="/login">Login</a>
+            </li>
+            <li class="nav-item" *ngIf="!isLoggedIn">
+              <a class="nav-link" routerLink="/registration">Registration</a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn">
+              <a class="nav-link" routerLink="/profile">Profile</a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn">
+              <a class="nav-link" (click)="logout()">Logout</a>
+            </li>
         </ul>
       </div>
     </div>

@@ -1,0 +1,136 @@
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="px-5 py-5">
+        <form class="register" [formGroup]="form" (ngSubmit)="registration()">
+          <fieldset>
+            <h2 class="mb-4 text-center">Registration</h2>
+            <div class="forms-inputs mb-4">
+              <span>Email</span>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                formControlName="email"
+              />
+              <ng-container *ngIf="form.get('email')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('email')?.errors?.['required']"
+                >
+                  Email is required!
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('email')?.errors?.['emailValidator']"
+                >
+                  Email is not valid!
+                </div>
+              </ng-container>
+            </div>
+            <div class="forms-inputs mb-4">
+              <span>Username</span>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                required
+                formControlName="username"
+              />
+              <ng-container *ngIf="form.get('username')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('username')?.errors?.['required']"
+                >
+                  Username is required!
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('username')?.errors?.['minlength']"
+                >
+                  Username must be 3 character!
+                </div>
+              </ng-container>
+            </div>
+            <div class="forms-inputs mb-4">
+              <span>Image</span>
+              <input type="text" name="img" id="img" formControlName="img" />
+              <ng-container *ngIf="form.get('img')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('img')?.errors?.['pattern']"
+                >
+                  Image is correct path!
+                </div>
+              </ng-container>
+            </div>
+            <ng-container formGroupName="passGroup">
+              <div class="forms-inputs mb-4">
+                <span>Password</span>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="******"
+                  formControlName="password"
+                />
+                <ng-container *ngIf="passGroup?.get('password')?.touched">
+                  <div
+                    class="text-danger"
+                    *ngIf="passGroup?.get('password')?.errors?.['required']"
+                  >
+                    Password is required!
+                  </div>
+                  <div
+                    class="text-danger"
+                    *ngIf="passGroup?.get('password')?.errors?.['minlength']"
+                  >
+                    Password must be 5 character!
+                  </div>
+                </ng-container>
+              </div>
+              <div class="forms-inputs mb-4">
+                <span>Repeat password</span>
+                <input
+                  type="password"
+                  name="rePassword"
+                  id="rePassword"
+                  placeholder="******"
+                  formControlName="rePassword"
+                />
+                <ng-container *ngIf="passGroup?.get('rePassword')?.touched">
+                  <div
+                    class="text-danger"
+                    *ngIf="passGroup?.get('rePassword')?.errors?.['required']"
+                  >
+                    Repeat Password is required!
+                  </div>
+                  <div
+                    class="text-danger"
+                    *ngIf="passGroup?.errors?.['matchPasswordsValidator']"
+                  >
+                    Repeat Password does not match password!
+                  </div>
+                </ng-container>
+              </div>
+            </ng-container>
+            <div class="mb-3">
+              <button
+                [disabled]="form.invalid"
+                [style]="{ backgroundColor: form.invalid ? 'grey' : 'black' }"
+                class="btn btn-dark w-100"
+              >
+                Create Account
+              </button>
+            </div>
+          </fieldset>
+        </form>
+        <p class="text-center">
+          Have an account?
+          <a class="text-muted" routerLink="/login">Log In</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
