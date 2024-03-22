@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { EMAIL_DOMAINS } from 'src/app/constants';
 import { emailValidator } from 'src/app/shared/utils/email.validator';
 import { matchPasswordsValidator } from 'src/app/shared/utils/match.passwords.validator';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -29,16 +31,28 @@ export class RegistrationComponent {
     return this.form.get('passGroup');
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   registration(): void {
-    // console.log(this.form.valid);
-    // console.log(this.form.value);
-    debugger
     if (this.form.invalid) {
       return;
     }
 
-    console.log(this.form.value);
+    const {
+      username,
+      email,
+      img,
+      passGroup: { password, rePassword } = {},
+    } = this.form.value;
+
+    this.userService
+      .registration(username!, email!, img!, password!, rePassword!)
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      });
   }
 }

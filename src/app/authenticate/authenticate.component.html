@@ -1,0 +1,8 @@
+<div class="container" *ngIf="isAuthenticating">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-2 px-5 py-5">
+      <app-loader />
+    </div>
+  </div>
+</div>
+<ng-content *ngIf="!isAuthenticating" />

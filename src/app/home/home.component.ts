@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user/user.service';
+import { ApiService } from '../app.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,13 @@ import { UserService } from '../user/user.service';
 })
 export class HomeComponent implements OnInit {
   isLoading: boolean = true;
-  constructor(private userService: UserService) { }
+  // message: any; 
+  constructor(private userService: UserService, private apiService: ApiService) { }
 
   ngOnInit(): void {
-
+    // this.apiService.getMessage().subscribe(data => {
+    //   this.message = data;
+    // });
 
     setTimeout(() => {
       this.isLoading = false;
