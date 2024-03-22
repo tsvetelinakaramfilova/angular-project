@@ -3,15 +3,15 @@ import { User } from "./user";
 
 export interface Recipe {
     id: string;
-    name: string;
+    recipeName: string;
     category: string;
     products: Products[];
-    image: string;
+    image?: string;
     description: string;
-    likedList: User[];
-    createdAt: Date,
+    likedList?: User[];
+    createdAt: string,
     owner: User;
-    comments: Comments[]
+    comments?: Comments[]
 }
 
 interface Products {
@@ -21,6 +21,7 @@ interface Products {
 
 export interface Comments {
     descriptionComment: string;
-    createdAt: Data;
-    owner: User;
+    createdAt: string;
+    userId: User;
+    recipeId: Recipe;
 }

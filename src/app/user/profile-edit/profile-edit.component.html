@@ -1,0 +1,82 @@
+<div class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="px-5 py-5">
+        <form class="editProfile" [formGroup]="form" (ngSubmit)="editProfile()">
+          <fieldset>
+            <h2 class="mb-4 text-center">Edit Profile</h2>
+            <div class="forms-inputs mb-4">
+              <span>Email</span>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                formControlName="email"
+              />
+              <ng-container *ngIf="form.get('email')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('email')?.errors?.['required']"
+                >
+                  Email is required!
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('email')?.errors?.['emailValidator']"
+                >
+                  Email is not valid!
+                </div>
+              </ng-container>
+            </div>
+            <div class="forms-inputs mb-4">
+              <span>Username</span>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                required
+                formControlName="username"
+              />
+              <ng-container *ngIf="form.get('username')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('username')?.errors?.['required']"
+                >
+                  Username is required!
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('username')?.errors?.['minlength']"
+                >
+                  Username must be 3 character!
+                </div>
+              </ng-container>
+            </div>
+            <div class="forms-inputs mb-4">
+              <span>Image</span>
+              <input type="text" name="img" id="img" formControlName="img" />
+              <ng-container *ngIf="form.get('img')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="form.get('img')?.errors?.['pattern']"
+                >
+                  Image is correct path!
+                </div>
+              </ng-container>
+            </div>
+            <div class="mb-3">
+              <button
+                [disabled]="form.invalid"
+                [style]="{ backgroundColor: form.invalid ? 'grey' : 'black' }"
+                class="btn btn-dark w-100"
+              >
+                Edit
+              </button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

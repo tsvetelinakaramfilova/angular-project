@@ -4,12 +4,18 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthActivate } from '../guards/auth.activate';
 import { RegistrationComponent } from './registration/registration.component';
+import { GuestActivate } from '../guards/guest.activate';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'registration', component:  RegistrationComponent},
+  { path: 'login', component: LoginComponent, canActivate: [GuestActivate] },
+  { path: 'registration', component: RegistrationComponent, canActivate: [GuestActivate] },
   {
     path: 'profile', component: ProfileComponent,
+    canActivate: [AuthActivate]
+  },
+  {
+    path: 'profile/edit', component: ProfileEditComponent,
     canActivate: [AuthActivate]
   },
 ];

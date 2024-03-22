@@ -7,9 +7,10 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 
 @NgModule({
-  declarations: [LoginComponent, ProfileComponent, RegistrationComponent],
+  declarations: [LoginComponent, ProfileComponent, RegistrationComponent, ProfileEditComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

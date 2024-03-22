@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <div class="main-body">
+    <!-- /Breadcrumb -->
+
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                src="{{ profile.img }}"
+                alt="User"
+                class="rounded-circle"
+                width="250"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Username</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ profile.username }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ profile.email }}
+              </div>
+            </div>
+            <hr />
+            <div class="row mt-2">
+              <div class="col-sm-12 d-flex justify-content-center">
+                <a class="btn btn-dark w-25" routerLink="/auth/profile/edit"
+                  >Edit</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

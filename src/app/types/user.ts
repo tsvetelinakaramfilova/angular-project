@@ -6,3 +6,9 @@ export interface User {
     img?: string;
     likeRecipes?: string[];
 }
+
+export interface ProfileDetails {
+    username: string;
+    email: string;
+    img?: string;
+}
