@@ -10,7 +10,7 @@ export interface Recipe {
     description: string;
     likedList?: User[];
     createdAt: string,
-    owner: User;
+    userId: User;
     comments?: Comments[]
 }
 
