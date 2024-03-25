@@ -1,0 +1,21 @@
+<div class="mx-4 my-3">
+  <div *ngFor="let recipe of recipes">
+    <div class="card">
+        <div class="row">
+            <div class="col col-lg-2">
+                <img src={{recipe.image}} alt={{recipe.recipeName}} class="img-thumbnail"/>
+              </div>
+            <div class="col">
+                <div class="card-body">
+                    <h5 class="card-title">{{recipe.recipeName}}</h5>
+                    <h6 class="card-title">Category: {{recipe.category}}</h6>
+                    <p class="card-text">
+                      {{recipe.description}}
+                    </p>
+                    <a [routerLink]="recipe.id" class="btn btn-dark">Read</a>
+                  </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

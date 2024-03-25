@@ -1,22 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthActivate } from '../guards/auth.activate';
-import { GuestActivate } from '../guards/guest.activate';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
+import { RecipesComponent } from './recipes/recipes.component';
 
 const routes: Routes = [
-    {
-        path: 'recipes',
-        children: [
-        //   { path: '', pathMatch: 'full', component: MainComponent },
-        //   { path: ':themeId', component: CurrentThemeComponent },
-        ],
-      },
-      {
-        path: 'add-recipe',
-        component: AddRecipeComponent,
-        canActivate: [AuthActivate],
-      },
+  {
+    path: '', component: RecipesComponent,
+  },
+  {
+    path: 'add-recipe',
+    component: AddRecipeComponent,
+    canActivate: [AuthActivate],
+  },
 ];
 
 @NgModule({

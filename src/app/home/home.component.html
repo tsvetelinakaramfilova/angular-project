@@ -1,12 +1,13 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <div class="col-md-2 px-5 py-5" *ngIf="isLoading">
-      <app-loader />
+    <!-- *ngIf="isLoading" -->
+    <div class="col-md-2 px-5 py-5" >
+      <!-- <app-loader /> -->
     </div>
   </div>
 </div>
-
-<div *ngIf="!isLoading">
+<!-- *ngIf="!isLoading" -->
+<div >
   <p *ngIf="message">
     {{ message.message }}
   </p>

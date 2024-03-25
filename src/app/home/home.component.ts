@@ -8,18 +8,16 @@ import { ApiService } from '../api.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  isLoading: boolean = true;
   message: any;
   constructor(private userService: UserService, private apiService: ApiService) { }
+
+  // get isLoading(): boolean {
+  //   return this.userService.isLogged;
+  // }
 
   ngOnInit(): void {
     this.apiService.getMessage().subscribe(data => {
       this.message = data;
-    });
-
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1000);
-
+    });  
   }
 }

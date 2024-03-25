@@ -7,12 +7,12 @@ import { environment } from 'src/environments/environment';
     providedIn: 'root'
 })
 export class ApiService {
-    
+
     constructor(private http: HttpClient) { }
 
-    getMessage() { 
+    getMessage() {
         const { apiUrl } = environment;
-        return this.http.get(`${apiUrl}/test`); 
+        return this.http.get(`${apiUrl}/test`);
     }
 
     createRecipe(recipeName: string,
@@ -27,6 +27,17 @@ export class ApiService {
         })) : [];
 
         return this.http.post<Recipe>(`/api/recipes`, { recipeName, category, products: formattedProducts, image, description });
+    }
+
+    getRecipes(limit?: number) {
+        const { apiUrl } = environment;
+        let url = `${apiUrl}/recipes`;
+
+        if (limit) {
+            url += `?limit=${limit}`;
+        }
+
+        return this.http.get<Recipe[]>(url);
     }
 
 
