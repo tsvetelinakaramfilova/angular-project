@@ -9,10 +9,19 @@ export interface Recipe {
     image?: string;
     description: string;
     likedList?: User[];
-    createdAt: string,
+    createdAt: string;
     userId: User;
     comments?: Comments[]
 }
+
+export interface RecipeEdit {
+    recipeName: string;
+    category: string;
+    products: Products[];
+    image?: string;
+    description: string;
+}
+
 
 interface Products {
     quantity: number;

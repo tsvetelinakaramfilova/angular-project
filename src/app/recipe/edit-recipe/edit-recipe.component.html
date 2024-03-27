@@ -1,1 +1,172 @@
-<p>edit-recipe works!</p>
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="px-5 py-5">
+          <form [formGroup]="productForm" (ngSubmit)="onEdit()">
+            <h2 class="mb-4 text-center">Recipe</h2>
+            <!-- Name -->
+            <div class="forms-inputs mb-4">
+              <span>Name recipe</span>
+              <input
+                type="text"
+                name="recipeName"
+                id="recipeName"
+                formControlName="recipeName"
+                required
+                minlength="3"
+              />
+              <ng-container *ngIf="productForm.get('recipeName')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="productForm.get('recipeName')?.errors?.['required']"
+                >
+                  Recipe name is required.
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="productForm.get('recipeName')?.errors?.['minlength']"
+                >
+                  Recipe name must be at least 3 characters long.
+                </div>
+              </ng-container>
+            </div>
+            <!-- Category  -->
+            <div class="forms-inputs mb-4">
+              <span>Category recipe</span>
+              <input
+                type="text"
+                name="category"
+                id="category"
+                formControlName="category"
+                required
+                minlength="3"
+              />
+              <ng-container *ngIf="productForm.get('category')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="productForm.get('category')?.errors?.['required']"
+                >
+                  Category is required.
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="productForm.get('category')?.errors?.['minlength']"
+                >
+                  Category must be at least 3 characters long.
+                </div>
+              </ng-container>
+            </div>
+            <!-- Products -->
+            <div>
+              <table class="table table-bordered" formArrayName="products">
+                <tr>
+                  <th colspan="2">Products:</th>
+                  <th class="text-end">
+                    <button
+                      type="button"
+                      (click)="addQuantity()"
+                      class="btn btn-dark my-2"
+                    >
+                      Add
+                    </button>
+                  </th>
+                </tr>
+                <tr
+                  *ngFor="let product of products().controls; let i = index"
+                  [formGroupName]="i"
+                >
+                  <td>
+                    <input
+                      type="number"
+                      formControlName="quantity"
+                      placeholder="Quantity"
+                      class="border border-secondary-subtle my-1"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      formControlName="product"
+                      placeholder="Product"
+                      class="border border-secondary-subtle my-1"
+                    />
+                  </td>
+                  <td>
+                    <button
+                      (click)="removeQuantity(i)"
+                      class="btn btn-danger my-2"
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!-- Image -->
+            <div class="forms-inputs mb-4">
+              <span>Image</span>
+              <input
+                type="text"
+                name="image"
+                id="image"
+                formControlName="image"
+              />
+              <ng-container *ngIf="productForm.get('image')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="productForm.get('image')?.errors?.['pattern']"
+                >
+                  Image is correct path!
+                </div>
+              </ng-container>
+            </div>
+  
+            <div class="forms-inputs mb-4">
+              <span>Description</span>
+              <textarea
+                type="text"
+                name="description"
+                id="description"
+                rows="8"
+                class="w-100 border border-secondary-subtle px-1 py-2"
+                formControlName="description"
+                required
+                minlength="10"
+              ></textarea>
+  
+              <ng-container *ngIf="productForm.get('description')?.touched">
+                <div
+                  class="text-danger"
+                  *ngIf="productForm.get('description')?.errors?.['required']"
+                >
+                  Description is required.
+                </div>
+                <div
+                  class="text-danger"
+                  *ngIf="productForm.get('description')?.errors?.['minlength']"
+                >
+                  Description must be at least 10 characters long.
+                </div>
+              </ng-container>
+            </div>
+  
+            <div class="mb-3 row">
+              <button
+                [disabled]="productForm.invalid"
+                [style]="{
+                  backgroundColor: productForm.invalid ? 'grey' : 'black'
+                }"
+                class="btn btn-dark col-sm-5 mx-3"
+              >
+                Edit recipe
+              </button>
+              <button class="btn btn-dark col-sm-5 mx-3" routerLink="/recipes">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
