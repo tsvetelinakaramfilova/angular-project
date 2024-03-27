@@ -8,8 +8,8 @@ import { Recipe } from 'src/app/types/recipe';
   styleUrls: ['./recipes.component.css']
 })
 export class RecipesComponent {
-  recipes: Recipe[] = [];
-  // isLoading: boolean = true;
+  recipes: Recipe[] | null = [];
+  isLoading: boolean = true;
 
   constructor(private apiService: ApiService) {}
 
@@ -18,12 +18,12 @@ export class RecipesComponent {
       next: (recipes) => {
         this.recipes = recipes;
 
-        // setTimeout(() => {
-        //   this.isLoading = false;
-        // }, 2000);
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       },
       error: (err) => {
-        // this.isLoading = false;
+        this.isLoading = false;
         console.error('Error: ', err);
       },
     });

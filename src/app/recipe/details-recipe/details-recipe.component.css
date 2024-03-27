@@ -1,0 +1,11 @@
+.img-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Optional: to prevent image overflow */
+}
+
+.img-stretch {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Optional: to maintain aspect ratio and fill container */
+}

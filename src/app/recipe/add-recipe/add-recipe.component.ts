@@ -51,7 +51,6 @@ export class AddRecipeComponent {
       description
     } = this.productForm.value;
 
-    // Map the products array to extract quantity and product information
     const formattedProducts = products ? products.map((product: any) => ({
       quantity: product.quantity,
       product: product.product
@@ -63,36 +62,4 @@ export class AddRecipeComponent {
       });
   }
 
-  // onSubmit() {
-  //   console.log(this.productForm.value);
-
-  //   if (this.productForm.invalid) {
-  //     return;
-  //   }
-
-  //   debugger
-
-  //   const {
-  //     recipeName,
-  //     category,
-  //     products: [{}],
-  //     image,
-  //     description
-  //   } = this.productForm.value;
-
-
-
-  //   this.apiService.createRecipe(recipeName!,
-  //     category!,
-  //     products!,
-  //     image!,
-  //     description!).subscribe(() => {
-  //     this.router.navigate(['/'])
-  //   })
-
-  //   // .registration(username!, email!, img!, password!, rePassword!)
-  //   // .subscribe(() => {
-  //   //   this.router.navigate(['/']);
-  //   // });
-  // }
 }
