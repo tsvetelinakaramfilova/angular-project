@@ -22,18 +22,8 @@ const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', component: RecipesComponent },
       { path: ':recipeId', component: DetailsRecipeComponent },
-      { path: 'edit-recipe/:recipeId', component: EditRecipeComponent, canActivate: [AuthActivate] },
     ],
-  },
-  // {
-  //   path: '', component: RecipesComponent,
-  // },
-  // { path: ':recipeId', component: DetailsRecipeComponent },
-  {
-    path: 'edit-recipe/:recipeId',
-    component: EditRecipeComponent,
-    canActivate: [AuthActivate],
-  },
+  }
 ];
 
 @NgModule({

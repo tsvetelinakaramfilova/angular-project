@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Recipe, RecipeEdit } from './types/recipe';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Comments, Recipe, RecipeEdit } from './types/recipe';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -58,5 +59,16 @@ export class ApiService {
     getRecipe(id: string) {
         const { apiUrl } = environment;
         return this.http.get<Recipe>(`${apiUrl}/recipes/${id}`)
+    }
+
+    getComments(recipeId: string) {
+        const { apiUrl } = environment;
+        return this.http.get<Comments>(`${apiUrl}/comments/${recipeId}`);
+    }
+
+    createComment(recipeId: string, descriptionComment: string){
+        console.log({descriptionComment, recipeId})
+
+        return this.http.post<Comments>(`/api/comments`, {recipeId, descriptionComment});
     }
 }

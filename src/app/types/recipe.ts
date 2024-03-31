@@ -29,8 +29,9 @@ interface Products {
 }
 
 export interface Comments {
+    _id:  string;
     descriptionComment: string;
-    createdAt: string;
+    created_at: string;
     userId: User;
     recipeId: Recipe;
 }

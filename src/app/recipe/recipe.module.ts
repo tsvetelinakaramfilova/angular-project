@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RecipesComponent } from './recipes/recipes.component';
 import { DetailsRecipeComponent } from './details-recipe/details-recipe.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
+import { CommentComponent } from '../comment/comment.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     AddRecipeComponent,
     RecipesComponent,
     DetailsRecipeComponent,
-    EditRecipeComponent
+    EditRecipeComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { RecipeEdit } from 'src/app/types/recipe';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -27,25 +28,32 @@ export class EditRecipeComponent {
     description: ['', [Validators.required, Validators.minLength(10)]],
   });
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private activeRoute: ActivatedRoute, private router: Router) {
+  constructor(private fb: FormBuilder, private apiService: ApiService, private activeRoute: ActivatedRoute, private router: Router, private userService: UserService) {
+  const { _id } = this.userService.user! || {};
+
     this.activeRoute.params.subscribe((data) => {
       const id = data['recipeId'];
       this.idRecipe = id;
       this.apiService.getRecipe(id).subscribe((recipe) => {
+
+        if (_id != undefined && _id !== recipe.userId._id) {
+          this.router.navigate(['recipes', id]);
+        }
+
         this.productForm.patchValue({
           recipeName: recipe.recipeName,
           category: recipe.category,
           image: recipe.image,
           description: recipe.description
         });
-  
+
         recipe.products.forEach((product: any) => {
           this.addProduct(product.quantity, product.product);
         });
       });
     });
   }
-  
+
   addProduct(quantity: string, product: string) {
     const productsArray = this.productForm.get('products') as FormArray;
     productsArray.push(this.newProduct(quantity, product));
@@ -61,7 +69,7 @@ export class EditRecipeComponent {
       product: [product],
     });
   }
-  
+
 
   addQuantity() {
     this.products().push(this.newProduct());
