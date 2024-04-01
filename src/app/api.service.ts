@@ -73,4 +73,12 @@ export class ApiService {
     deleteComment(recipeId: string, commentId: string) {
         return this.http.delete<Comments>(`/api/comments/${recipeId}/${commentId}`);
     }
+
+    likeRecipe(recipeId: string){
+        return this.http.put<Recipe>(`/api/likes/${recipeId}`, {});
+    }
+
+    dislikeRecipe(recipeId: string){
+        return this.http.put<Recipe>(`/api/likes/dislikes/${recipeId}`, {});
+    }
 }

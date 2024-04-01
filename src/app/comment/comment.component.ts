@@ -41,9 +41,6 @@ export class CommentComponent implements OnInit {
         } else {
           this.comments = [];
         }
-
-        console.log(this.comments)
-        console.log(this.hasComments)
       });
     });
   }

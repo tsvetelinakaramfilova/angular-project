@@ -14,27 +14,32 @@ export class DetailsRecipeComponent implements OnInit {
   recipe = {} as Recipe;
   user = {} as User;
   isLoading: boolean = true;
+  isLogging: boolean = false;
   isAuthor: boolean = false;
+  recipeId: string = "";
   author: string = "";
+  like: boolean = false;
 
   constructor(private apiService: ApiService, private activeRoute: ActivatedRoute, private userService: UserService) { }
-
-  deleteRecipe(id: string) {
-    return 
-  }
 
   ngOnInit(): void {
     const { _id } = this.userService.user! || {};
 
     this.activeRoute.params.subscribe((data) => {
-      const id = data['recipeId'];
+      this.recipeId = data['recipeId'];
 
-      this.apiService.getRecipe(id).subscribe((recipe) => {
+      this.apiService.getRecipe(this.recipeId).subscribe((recipe) => {
         this.recipe = recipe;
         this.author = recipe.userId.username;
 
+        this.isLogging = this.userService.isLogged
+
         if (_id != undefined && recipe.userId._id! === _id) {
           this.isAuthor = true;
+        }
+
+        if (recipe.likedList?.some(user => user._id === _id)) {
+          this.like = true;
         }
       });
     });
@@ -42,5 +47,23 @@ export class DetailsRecipeComponent implements OnInit {
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
+  }
+
+  deleteRecipe() {
+    return
+  }
+
+  likeRecipe() {
+    this.apiService.likeRecipe(this.recipeId)
+      .subscribe(() => {
+        window.location.reload();
+      });
+  }
+
+  dislikeRecipe() {
+    this.apiService.dislikeRecipe(this.recipeId)
+      .subscribe(() => {
+        window.location.reload();
+      })
   }
 }
