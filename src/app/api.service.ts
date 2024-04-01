@@ -45,6 +45,10 @@ export class ApiService {
         return this.http.put<RecipeEdit>(`/api/recipes/${id}`, { recipeName, category, products: formattedProducts, image, description });
     }
 
+    deleteRecipe(recipeId: string) {
+        return this.http.delete<Recipe>(`/api/recipes/${recipeId}`);
+    }
+
     getRecipes(limit?: number) {
         const { apiUrl } = environment;
         let url = `${apiUrl}/recipes`;

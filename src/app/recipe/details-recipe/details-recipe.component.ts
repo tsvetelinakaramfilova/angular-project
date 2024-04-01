@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Recipe } from 'src/app/types/recipe';
 import { User } from 'src/app/types/user';
@@ -20,7 +20,8 @@ export class DetailsRecipeComponent implements OnInit {
   author: string = "";
   like: boolean = false;
 
-  constructor(private apiService: ApiService, private activeRoute: ActivatedRoute, private userService: UserService) { }
+  constructor(private apiService: ApiService, private activeRoute: ActivatedRoute, 
+    private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     const { _id } = this.userService.user! || {};
@@ -50,7 +51,9 @@ export class DetailsRecipeComponent implements OnInit {
   }
 
   deleteRecipe() {
-    return
+    this.apiService.deleteRecipe(this.recipeId).subscribe(()=>{
+      this.router.navigate(["/recipes"])
+    })
   }
 
   likeRecipe() {
