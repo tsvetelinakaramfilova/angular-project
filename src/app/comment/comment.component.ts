@@ -14,13 +14,15 @@ export class CommentComponent implements OnInit {
   comments: Comments[] | null = [];
   hasComments: boolean = false
   recipeId: string = ''
+  userId: string = ''
+
   commentForm = this.fb.group({
     descriptionComment: ['', [Validators.required, Validators.minLength(10)]],
   });
 
-  constructor(private fb: FormBuilder, private userService: UserService, 
-    private activeRoute: ActivatedRoute, private apiService: ApiService, 
-    private router:Router) { }
+  constructor(private fb: FormBuilder, private userService: UserService,
+    private activeRoute: ActivatedRoute, private apiService: ApiService,
+    private router: Router) { }
 
   get isLoggedIn(): boolean {
     return this.userService.isLogged;
@@ -29,17 +31,19 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.params.subscribe((data) => {
       this.recipeId = data['recipeId'];
+      const { _id } = this.userService.user! || {};
 
       this.apiService.getComments(this.recipeId).subscribe((comments) => {
-          if (Array.isArray(comments)) {
-            this.comments = comments;
-            this.hasComments = true;
-          } else {
-            this.comments = [];
-          }
+        if (Array.isArray(comments)) {
+          this.comments = comments;
+          this.userId = _id;
+          this.hasComments = true;
+        } else {
+          this.comments = [];
+        }
 
-          console.log(this.comments)
-          console.log(this.hasComments)
+        console.log(this.comments)
+        console.log(this.hasComments)
       });
     });
   }
@@ -53,12 +57,15 @@ export class CommentComponent implements OnInit {
 
     this.apiService.createComment(this.recipeId!, descriptionComment!)
       .subscribe(() => {
-        this.router.navigate(['recipes', this.recipeId]);
-        this.commentForm.reset();
+        window.location.reload();
+        // this.commentForm.reset();
       });
   }
 
-  onDeleteComments(idComment: string){
-    console.log(idComment)
+  onDeleteComments(commentId: string) {
+    this.apiService.deleteComment(this.recipeId!, commentId!)
+      .subscribe(() => {
+        window.location.reload();
+      });
   }
 }

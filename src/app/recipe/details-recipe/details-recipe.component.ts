@@ -41,6 +41,6 @@ export class DetailsRecipeComponent implements OnInit {
 
     setTimeout(() => {
       this.isLoading = false;
-    }, 1000);
+    }, 2000);
   }
 }

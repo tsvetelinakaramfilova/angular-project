@@ -27,7 +27,7 @@
               <p>
                 {{ comment.descriptionComment }}
               </p>
-              <div class="text-end">
+              <div class="text-end" *ngIf="userId === comment.userId._id">
                 <a (click)="onDeleteComments(comment._id)">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

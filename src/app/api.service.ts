@@ -66,9 +66,11 @@ export class ApiService {
         return this.http.get<Comments>(`${apiUrl}/comments/${recipeId}`);
     }
 
-    createComment(recipeId: string, descriptionComment: string){
-        console.log({descriptionComment, recipeId})
+    createComment(recipeId: string, descriptionComment: string) {
+        return this.http.post<Comments>(`/api/comments`, { recipeId, descriptionComment });
+    }
 
-        return this.http.post<Comments>(`/api/comments`, {recipeId, descriptionComment});
+    deleteComment(recipeId: string, commentId: string) {
+        return this.http.delete<Comments>(`/api/comments/${recipeId}/${commentId}`);
     }
 }
