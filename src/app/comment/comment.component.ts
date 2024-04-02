@@ -33,7 +33,6 @@ export class CommentComponent implements OnInit {
       const { _id } = this.userService.user! || {};
 
       this.apiService.getComments(this.recipeId).subscribe((comments) => {
-        debugger
         if (Array.isArray(comments) && comments.length > 0) {
           this.comments = comments;
           this.userId = _id;
