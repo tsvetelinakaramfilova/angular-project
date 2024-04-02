@@ -9,14 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { appInterceptorProvider } from './app.interceptor';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
-import { CommentComponent } from './comment/comment.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    // CommentComponent,
     AuthenticateComponent,
   ],
   imports: [

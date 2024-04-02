@@ -12,9 +12,9 @@ import { UserService } from 'src/app/user/user.service';
 })
 export class DetailsRecipeComponent implements OnInit {
   recipe = {} as Recipe;
-  user = {} as User;
+  // user = {} as User;
   isLoading: boolean = true;
-  isLogging: boolean = false;
+  userId: string = '';
   isAuthor: boolean = false;
   recipeId: string = "";
   author: string = "";
@@ -32,8 +32,10 @@ export class DetailsRecipeComponent implements OnInit {
       this.apiService.getRecipe(this.recipeId).subscribe((recipe) => {
         this.recipe = recipe;
         this.author = recipe.userId.username;
+        
+        console.log(recipe)   
 
-        this.isLogging = this.userService.isLogged
+        this.userId = _id 
 
         if (_id != undefined && recipe.userId._id! === _id) {
           this.isAuthor = true;

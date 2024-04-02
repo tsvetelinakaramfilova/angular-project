@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthActivate } from '../guards/auth.activate';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
-import { RecipesComponent } from './recipes/recipes.component';
+import { RecipesPageComponent } from './recipes-page/recipes-page.component';
 import { DetailsRecipeComponent } from './details-recipe/details-recipe.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', pathMatch: 'full', component: RecipesComponent },
+      { path: '', pathMatch: 'full', component: RecipesPageComponent },
       { path: ':recipeId', component: DetailsRecipeComponent },
     ],
   }

@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { RecipeModule } from '../recipe/recipe.module';
 
 @NgModule({
   declarations: [LoginComponent, ProfileComponent, RegistrationComponent, ProfileEditComponent],
@@ -16,6 +17,7 @@ import { ProfileEditComponent } from './profile-edit/profile-edit.component';
     UserRoutingModule,
     RouterModule,
     SharedModule,
+    RecipeModule,
     FormsModule,
     ReactiveFormsModule,
   ],

@@ -1,0 +1,7 @@
+<div *ngIf="isLoading">
+    <app-loader />
+  </div>
+  <div class="mx-4 my-3" *ngIf="!isLoading">
+    <app-recipes [recipes]="recipes" />
+  </div>
+  

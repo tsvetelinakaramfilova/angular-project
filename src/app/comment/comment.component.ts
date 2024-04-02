@@ -21,8 +21,7 @@ export class CommentComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder, private userService: UserService,
-    private activeRoute: ActivatedRoute, private apiService: ApiService,
-    private router: Router) { }
+    private activeRoute: ActivatedRoute, private apiService: ApiService) { }
 
   get isLoggedIn(): boolean {
     return this.userService.isLogged;
@@ -34,7 +33,8 @@ export class CommentComponent implements OnInit {
       const { _id } = this.userService.user! || {};
 
       this.apiService.getComments(this.recipeId).subscribe((comments) => {
-        if (Array.isArray(comments)) {
+        debugger
+        if (Array.isArray(comments) && comments.length > 0) {
           this.comments = comments;
           this.userId = _id;
           this.hasComments = true;

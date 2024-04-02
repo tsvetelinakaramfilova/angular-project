@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../user.service';
-import { ProfileDetails } from 'src/app/types/user';
+import { ProfileInfo } from 'src/app/types/user';
 
 @Component({
   selector: 'app-profile',
@@ -8,22 +8,17 @@ import { ProfileDetails } from 'src/app/types/user';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
-
-  profile: ProfileDetails = {
+  profile: ProfileInfo = {
     username: '',
     img: '',
     email: '',
+    likedRecipes: undefined,
   };
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    const { username, img, email } = this.userService.user!
-
-    this.profile = {
-      username,
-      img: img || "../../../../assets/Logo_f.png",
-      email,
-    };
+    const { username, img, email, likedRecipes} = this.userService.user!
+    this.profile = { username, img, email, likedRecipes};
   }
 }
