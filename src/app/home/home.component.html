@@ -1,14 +1,58 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <!-- *ngIf="isLoading" -->
-    <div class="col-md-2 px-5 py-5" >
-      <!-- <app-loader /> -->
+    <div class="col-md-2 px-5 py-5" *ngIf="isLoading">
+      <app-loader />
     </div>
   </div>
 </div>
-<!-- *ngIf="!isLoading" -->
-<div >
-  <p *ngIf="message">
+<div *ngIf="!isLoading">
+  <!-- <p *ngIf="message">
     {{ message.message }}
-  </p>
+  </p> -->
+  <section id="hero" class="section hero">
+    <div class="container">
+      <div class="row gy-4">
+        <div
+          class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center"
+        >
+          <h1 class="">Recipe</h1>
+          <p>More ideas for a variety of recipes</p>
+          <div class="d-flex">
+            <a routerLink="/recipes" class="btn btn-dark">More recipes</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img">
+          <img
+            src="../assets/Logo_f.png"
+            class="img-fluid animated"
+            alt="RecipeLogo"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <h1 class="mb-2">The last three recipes</h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div *ngFor="let recipe of recipes">
+        <div class="col">
+          <div class="card h-100">
+            <img
+              src="{{ recipe.image || '../../../../assets/Logo_f.png' }}"
+              class="card-img-top"
+              alt="{{ recipe.recipeName }}"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ recipe.recipeName }}</h5>
+              <p class="card-text max-character">{{ recipe.description }}</p>
+              <a [routerLink]="['/recipes', recipe._id]" class="btn btn-dark">Read</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
 </div>

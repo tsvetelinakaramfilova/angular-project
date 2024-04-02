@@ -60,6 +60,17 @@ export class ApiService {
         return this.http.get<Recipe[]>(url);
     }
 
+    getLastRecipes(limit?: number) {
+        const { apiUrl } = environment;
+        let url = `${apiUrl}/recipes/last`;
+
+        if (limit) {
+            url += `?limit=${limit}`;
+        }
+
+        return this.http.get<Recipe[]>(url);
+    }
+
     getRecipe(id: string) {
         const { apiUrl } = environment;
         return this.http.get<Recipe>(`${apiUrl}/recipes/${id}`)
