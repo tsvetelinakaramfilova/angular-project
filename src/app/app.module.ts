@@ -24,6 +24,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     AppRoutingModule,
     HttpClientModule,
   ],
+  exports: [ CoreModule],
   providers: [appInterceptorProvider],
   bootstrap: [AppComponent]
 })

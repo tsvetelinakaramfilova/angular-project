@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: "auth", loadChildren: () => import("./user/user.module").then((m) => m.UserModule) },
   { path: "recipes", loadChildren: () => import("./recipe/recipe.module").then((m) => m.RecipeModule) },
-  { path: 'error', component: ErrorComponent },
+  // { path: 'error', component: ErrorComponent },
   { path: '**', redirectTo: '/404' },
   { path: '404', component: ErrorPageComponent },
 ];

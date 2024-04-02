@@ -1,1 +1,1 @@
-<p class="notification error-message">{{ errorMsg }}</p>
+<ngb-alert type="secondary" (closed)="close()" *ngIf="errorMsg">{{ errorMsg }}</ngb-alert>

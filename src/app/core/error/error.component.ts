@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorService } from './error.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-error',
@@ -8,11 +9,19 @@ import { ErrorService } from './error.service';
 })
 export class ErrorComponent implements OnInit {
   errorMsg = '';
-  constructor(private errorService: ErrorService) {}
+  constructor(private errorService: ErrorService) { }
 
   ngOnInit(): void {
-    this.errorService.apiError$.subscribe((err: any) => {
-      this.errorMsg = err?.message || '';
+    this.errorService.apiError$.subscribe((err: HttpErrorResponse | null) => {
+      if (err && err.error && err.error.message) {
+        this.errorMsg = err.error.message;
+      } else {
+        this.errorMsg = 'An error occurred';
+      }
     });
+  }
+
+  close() {
+    this.errorMsg = '';
   }
 }
