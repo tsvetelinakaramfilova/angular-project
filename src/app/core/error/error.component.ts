@@ -15,8 +15,6 @@ export class ErrorComponent implements OnInit {
     this.errorService.apiError$.subscribe((err: HttpErrorResponse | null) => {
       if (err && err.error && err.error.message) {
         this.errorMsg = err.error.message;
-      } else {
-        this.errorMsg = 'An error occurred';
       }
     });
   }

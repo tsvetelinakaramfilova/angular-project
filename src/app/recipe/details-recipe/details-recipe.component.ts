@@ -32,8 +32,6 @@ export class DetailsRecipeComponent implements OnInit {
       this.apiService.getRecipe(this.recipeId).subscribe((recipe) => {
         this.recipe = recipe;
         this.author = recipe.userId.username;
-        
-        console.log(recipe)   
 
         this.userId = _id 
 
