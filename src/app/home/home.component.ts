@@ -45,6 +45,7 @@ import { animate, query, stagger, style, transition, trigger } from '@angular/an
 export class HomeComponent implements OnInit {
   recipes: Recipe[] | null = [];
   isLoading: boolean = true;
+  haveRecipe: boolean = false;
   message: any;
 
   constructor(private apiService: ApiService) { }
@@ -52,6 +53,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getLastRecipes(3).subscribe(recipes => {
       this.recipes = recipes;
+      if(Array.isArray(recipes) && recipes.length > 0){
+        this.haveRecipe = true;
+      }
     })
 
     setTimeout(() => {
