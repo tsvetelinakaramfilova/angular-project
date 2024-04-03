@@ -10,7 +10,7 @@ import { animate, query, stagger, style, transition, trigger } from '@angular/an
   styleUrls: ['./home.component.css'],
   animations: [
     trigger('divRight', [
-      transition('* => *', [
+      transition(':enter', [
         query('img',style({ transform: 'translateX(100%)'})),
         query('img',
           stagger('600ms', [
@@ -19,7 +19,7 @@ import { animate, query, stagger, style, transition, trigger } from '@angular/an
       ])
     ]),
     trigger('divLeft', [
-      transition('* => *', [
+      transition(':enter', [
         query('*',style({ transform: 'translateX(-100%)'})),
         query('*',
           stagger('600ms', [
@@ -30,7 +30,7 @@ import { animate, query, stagger, style, transition, trigger } from '@angular/an
   ]
 })
 export class HomeComponent implements OnInit {
-  recipes: Recipe[] | null = null;
+  recipes: Recipe[] | null = [];
   isLoading: boolean = true;
   message: any;
 

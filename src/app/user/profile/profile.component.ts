@@ -8,6 +8,7 @@ import { ProfileInfo } from 'src/app/types/user';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
+  likeListLength: boolean = true;
   profile: ProfileInfo = {
     username: '',
     img: '',
@@ -18,7 +19,12 @@ export class ProfileComponent {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    const { username, img, email, likedRecipes} = this.userService.user!
-    this.profile = { username, img, email, likedRecipes};
+    const { username, img, email, likedRecipes } = this.userService.user!;
+    this.profile = { username, img, email, likedRecipes };
+
+    if (Array.isArray(this.profile.likedRecipes) && this.profile.likedRecipes.length <= 0) {
+      this.likeListLength = false;
+    } 
+
   }
 }

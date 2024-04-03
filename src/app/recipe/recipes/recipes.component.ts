@@ -6,6 +6,6 @@ import { Recipe } from 'src/app/types/recipe';
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css']
 })
-export class RecipesComponent {
-  @Input('recipes') recipes: Recipe[] | null = null;
+export class RecipesComponent{
+  @Input('recipes') recipes?: Recipe[] | null = [];
 }

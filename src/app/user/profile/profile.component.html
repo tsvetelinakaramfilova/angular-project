@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <div *ngIf="profile.likedRecipes">
+    <div *ngIf="likeListLength">
       <h3 class="my-3">Liked recipes</h3>
       <app-recipes [recipes]="profile.likedRecipes"/>
     </div>
