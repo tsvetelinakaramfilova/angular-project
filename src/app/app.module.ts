@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { appInterceptorProvider } from './app.interceptor';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
     BrowserModule,
     CoreModule,
     SharedModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
   ],

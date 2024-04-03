@@ -2,11 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user/user.service';
 import { ApiService } from '../api.service';
 import { Recipe } from '../types/recipe';
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('divRight', [
+      transition('* => *', [
+        query('img',style({ transform: 'translateX(100%)'})),
+        query('img',
+          stagger('600ms', [
+            animate('900ms', style({ transform: 'translateX(0%)'}))
+        ]))
+      ])
+    ]),
+    trigger('divLeft', [
+      transition('* => *', [
+        query('*',style({ transform: 'translateX(-100%)'})),
+        query('*',
+          stagger('600ms', [
+            animate('900ms', style({ transform: 'translateX(0%)'}))
+        ]))
+      ])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
   recipes: Recipe[] | null = null;
@@ -20,7 +41,7 @@ export class HomeComponent implements OnInit {
       this.message = data;
     });
 
-    this.apiService.getLastRecipes(3).subscribe(recipes =>{
+    this.apiService.getLastRecipes(3).subscribe(recipes => {
       this.recipes = recipes;
     })
 
