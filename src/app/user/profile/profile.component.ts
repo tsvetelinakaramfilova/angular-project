@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { ProfileInfo } from 'src/app/types/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +26,5 @@ export class ProfileComponent {
     if (Array.isArray(this.profile.likedRecipes) && this.profile.likedRecipes.length <= 0) {
       this.likeListLength = false;
     } 
-
   }
 }

@@ -15,6 +15,13 @@ import { animate, query, stagger, style, transition, trigger } from '@angular/an
           stagger('600ms', [
             animate('900ms', style({ transform: 'translateX(0%)'}))
         ]))
+      ]),
+      transition(':leave', [
+        query('img',style({ transform: 'translateX(0%)'})),
+        query('img',
+          stagger('600ms', [
+            animate('1600ms', style({ transform: 'translateX(100%)'}))
+        ]))
       ])
     ]),
     trigger('divLeft', [
@@ -23,6 +30,13 @@ import { animate, query, stagger, style, transition, trigger } from '@angular/an
         query('*',
           stagger('600ms', [
             animate('900ms', style({ transform: 'translateX(0%)'}))
+        ]))
+      ]),
+      transition(':leave', [
+        query('*',style({ transform: 'translateX(0%)'})),
+        query('*',
+          stagger('400ms', [
+            animate('600ms', style({ transform: 'translateX(-100%)'}))
         ]))
       ])
     ])
