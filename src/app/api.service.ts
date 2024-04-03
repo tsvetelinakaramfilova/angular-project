@@ -76,6 +76,11 @@ export class ApiService {
         return this.http.get<Recipe>(`${apiUrl}/recipes/${id}`)
     }
 
+    searchRecipe(searchText: string) {
+        const { apiUrl } = environment;
+        return this.http.get<Recipe[]>(`${apiUrl}/recipes/search/${searchText}`)
+    }
+
     getComments(recipeId: string) {
         const { apiUrl } = environment;
         return this.http.get<Comments>(`${apiUrl}/comments/${recipeId}`);

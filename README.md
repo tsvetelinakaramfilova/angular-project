@@ -46,7 +46,7 @@ User authentication page. With link to registration page.
 Possibility of registration for anyone by setting an email, username and password. Can also add a photo using a link. With link to login page.
 
 ### Recipes page
-All available records are displayed again with a link to the recipe description.
+All available records are displayed again with a link to the recipe description. Added filter under the form of the search bar.
 
 ### Add recipe page
 Only logged in users have access to it, and guests are redirected to the log in page.
