@@ -15,6 +15,7 @@ export class EditRecipeComponent {
   recipe: RecipeEdit = {
     recipeName: '',
     category: '',
+    timeToCook: 0,
     products: [],
     image: '',
     description: '',
@@ -23,6 +24,7 @@ export class EditRecipeComponent {
   productForm = this.fb.group({
     recipeName: ['', [Validators.required, Validators.minLength(3)]],
     category: ['', [Validators.required, Validators.minLength(3)]],
+    timeToCook: [1 , [Validators.required, Validators.min(1)]],
     products: this.fb.array([]),
     image: ['', [Validators.pattern(/^https?:\/\//)]],
     description: ['', [Validators.required, Validators.minLength(10)]],
@@ -43,6 +45,7 @@ export class EditRecipeComponent {
         this.productForm.patchValue({
           recipeName: recipe.recipeName,
           category: recipe.category,
+          timeToCook: recipe.timeToCook,
           image: recipe.image,
           description: recipe.description
         });
@@ -87,6 +90,7 @@ export class EditRecipeComponent {
     const {
       recipeName,
       category,
+      timeToCook,
       products,
       image,
       description
@@ -97,7 +101,7 @@ export class EditRecipeComponent {
       product: product.product
     })) : [];
 
-    this.apiService.updateRecipe(this.idRecipe, recipeName!, category!, formattedProducts, image!, description!)
+    this.apiService.updateRecipe(this.idRecipe, recipeName!, category!, timeToCook!, formattedProducts, image!, description!)
       .subscribe(() => {
         this.router.navigate(['/recipes']);
       });

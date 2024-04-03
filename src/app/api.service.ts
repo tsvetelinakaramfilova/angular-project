@@ -18,6 +18,7 @@ export class ApiService {
 
     createRecipe(recipeName: string,
         category: string,
+        timeToCook: number,
         products: { quantity: any; product: any; }[] | undefined,
         image: string,
         description: string) {
@@ -27,12 +28,13 @@ export class ApiService {
             product: product.product
         })) : [];
 
-        return this.http.post<Recipe>(`/api/recipes`, { recipeName, category, products: formattedProducts, image, description });
+        return this.http.post<Recipe>(`/api/recipes`, { recipeName, category, timeToCook, products: formattedProducts, image, description });
     }
 
     updateRecipe(id: string,
         recipeName: string,
         category: string,
+        timeToCook: number,
         products: { quantity: any; product: any; }[] | undefined,
         image: string,
         description: string) {
@@ -42,7 +44,7 @@ export class ApiService {
             product: product.product
         })) : [];
 
-        return this.http.put<RecipeEdit>(`/api/recipes/${id}`, { recipeName, category, products: formattedProducts, image, description });
+        return this.http.put<RecipeEdit>(`/api/recipes/${id}`, { recipeName, category, timeToCook, products: formattedProducts, image, description });
     }
 
     deleteRecipe(recipeId: string) {

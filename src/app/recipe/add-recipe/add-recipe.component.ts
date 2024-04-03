@@ -12,6 +12,7 @@ export class AddRecipeComponent {
   productForm = this.fb.group({
     recipeName: ['', [Validators.required, Validators.minLength(3)]],
     category: ['', [Validators.required, Validators.minLength(3)]],
+    timeToCook: [1 , [Validators.required, Validators.min(1)]],
     products: this.fb.array([]),
     image: ['', [Validators.pattern(/^https?:\/\//)]],
     description: ['', [Validators.required, Validators.minLength(10)]],
@@ -46,6 +47,7 @@ export class AddRecipeComponent {
     const {
       recipeName,
       category,
+      timeToCook,
       products,
       image,
       description
@@ -56,7 +58,7 @@ export class AddRecipeComponent {
       product: product.product
     })) : [];
 
-    this.apiService.createRecipe(recipeName!, category!, formattedProducts, image!, description!)
+    this.apiService.createRecipe(recipeName!, category!, timeToCook!, formattedProducts, image!, description!)
       .subscribe(() => {
         this.router.navigate(['/recipes']);
       });

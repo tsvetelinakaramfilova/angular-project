@@ -95,7 +95,7 @@
         </div>
       </div>
       <div class="col">
-        <div class="row">
+        <div class="row mb-2">
           <div class="col-auto">
             <h6 class="mb-0">Category:</h6>
           </div>
@@ -103,9 +103,19 @@
             <p class="mb-0">{{ recipe.category }}</p>
           </div>
         </div>
-        <h6>Products:</h6>
-        <div *ngFor="let product of recipe.products" class="my-1">
-          <p>{{ product.quantity }} g. {{ product.product }}</p>
+        <div class="row mb-2">
+          <div class="col-auto">
+            <h6 class="mb-0">Time:</h6>
+          </div>
+          <div class="col">
+            <p class="mb-0">{{ recipe.timeToCook | minToHoursMin }}</p>
+          </div>
+        </div>
+        <div class="mt-3">
+          <h6>Products:</h6>
+          <div *ngFor="let product of recipe.products" class="my-1">
+            <p>{{ product.quantity }} g. {{ product.product }}</p>
+          </div>
         </div>
       </div>
     </div>

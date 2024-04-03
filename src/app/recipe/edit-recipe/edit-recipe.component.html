@@ -56,6 +56,32 @@
                 </div>
               </ng-container>
             </div>
+            <!-- timeToCook  -->
+          <div class="forms-inputs mb-4">
+            <span>Time to cook</span>
+            <input
+              type="number"
+              name="timeToCook"
+              id="timeToCook"
+              formControlName="timeToCook"
+              required
+              minlength="3"
+            />
+            <ng-container *ngIf="productForm.get('timeToCook')?.touched">
+              <div
+                class="text-danger"
+                *ngIf="productForm.get('timeToCook')?.errors?.['required']"
+              >
+                Time is required.
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="productForm.get('timeToCook')?.errors?.['min']"
+              >
+                Min time is 1 min.
+              </div>
+            </ng-container>
+          </div>
             <!-- Products -->
             <div>
               <table class="table table-bordered" formArrayName="products">

@@ -4,6 +4,7 @@ export interface Recipe {
     _id: string;
     recipeName: string;
     category: string;
+    timeToCook: number;
     products: Products[];
     image?: string;
     description: string;
@@ -16,6 +17,7 @@ export interface Recipe {
 export interface RecipeEdit {
     recipeName: string;
     category: string;
+    timeToCook: number;
     products: Products[];
     image?: string;
     description: string;
