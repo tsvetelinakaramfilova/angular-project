@@ -1,4 +1,3 @@
-import { Data } from "@angular/router";
 import { User } from "./user";
 
 export interface Recipe {
@@ -9,7 +8,7 @@ export interface Recipe {
     image?: string;
     description: string;
     likedList?: User[];
-    createdAt: string;
+    created_at: string;
     userId: User;
     comments?: Comments[]
 }

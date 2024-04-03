@@ -20,7 +20,7 @@
             <span class="be-comment-name">{{ comment.userId.username }} </span>
             <span class="be-comment-time">
               <i class="fa fa-clock-o"></i>
-              {{ comment.created_at | date : "h:mm a M/d/yy" }}
+              {{ comment.created_at | formatDate }}
             </span>
 
             <div class="be-comment-text">

@@ -46,6 +46,7 @@
             />
             <div class="card-body">
               <h5 class="card-title">{{ recipe.recipeName | slice: 20 }}</h5>
+              <p class="card-text text-end mb-1">{{ recipe.created_at | elapsedTime }}</p>
               <p class="card-text">{{ recipe.description | slice: 30 }}</p>
               <a [routerLink]="['/recipes', recipe._id]" class="btn btn-dark">Read</a>
             </div>

@@ -24,12 +24,19 @@
         </a>
       </div>
       <div class="col justify-content-md-center">
-        <h5 class="text-center">{{ recipe.recipeName }}</h5>
+        <h5 class="text-center fs-2 display-2">{{ recipe.recipeName }}</h5>
       </div>
       <div class="col col-lg-1" *ngIf="userId">
         <div>
           <a (click)="likeRecipe()" *ngIf="!like">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark-star" viewBox="0 0 16 16">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-bookmark-star"
+              viewBox="0 0 16 16"
+            >
               <path
                 d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.18.18 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.18.18 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.18.18 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.18.18 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.18.18 0 0 0 .134-.098z"
               />
@@ -39,27 +46,43 @@
             </svg>
           </a>
           <a (click)="dislikeRecipe()" *ngIf="like">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bookmark-star-fill" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5M8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.18.18 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.18.18 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.18.18 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.18.18 0 0 1-.134-.098z"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              fill="currentColor"
+              class="bi bi-bookmark-star-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5M8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.18.18 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.18.18 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.18.18 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.18.18 0 0 1-.134-.098z"
+              />
             </svg>
           </a>
         </div>
       </div>
     </div>
-    <div class="row my-3">
-      <div class="col text-end mr-2">Author: {{ author }}</div>
+    <div class="row mx-2">
+      <div class="col">
+        <p class="text-secondary fs-6">{{ recipe.created_at | formatDate }}</p>
+      </div>
+      <div class="col text-end">
+        <p class="text-secondary fs-6">Author: {{ author }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="text-end mt-1 mb-4" *ngIf="isAuthor">
+        <a
+          class="btn btn-dark mx-2"
+          [routerLink]="['/recipes/edit-recipe/' + recipe._id]"
+          >Edit</a
+        >
+        <a class="btn btn-dark mx-2" (click)="deleteRecipe()">Delete</a>
+      </div>
     </div>
   </div>
-  <div>
-    <div class="text-end mt-1 mb-4" *ngIf="isAuthor">
-      <a
-        class="btn btn-dark mx-2"
-        [routerLink]="['/recipes/edit-recipe/' + recipe._id]"
-        >Edit</a
-      >
-      <a class="btn btn-dark mx-2" (click)="deleteRecipe()">Delete</a>
-    </div>
-  </div>
+
   <div class="container">
     <div class="row">
       <div class="col">
@@ -72,8 +95,14 @@
         </div>
       </div>
       <div class="col">
-        <h6>Category:</h6>
-        <p>{{ recipe.category }}</p>
+        <div class="row">
+          <div class="col-auto">
+            <h6 class="mb-0">Category:</h6>
+          </div>
+          <div class="col">
+            <p class="mb-0">{{ recipe.category }}</p>
+          </div>
+        </div>
         <h6>Products:</h6>
         <div *ngFor="let product of recipe.products" class="my-1">
           <p>{{ product.quantity }} g. {{ product.product }}</p>
