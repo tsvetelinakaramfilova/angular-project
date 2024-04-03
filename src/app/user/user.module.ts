@@ -9,9 +9,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { RecipeModule } from '../recipe/recipe.module';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
 
 @NgModule({
-  declarations: [LoginComponent, ProfileComponent, RegistrationComponent, ProfileEditComponent],
+  declarations: [LoginComponent, ProfileComponent, RegistrationComponent, ProfileEditComponent, EditPasswordComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user/user.service';
 import { ApiService } from '../api.service';
 import { Recipe } from '../types/recipe';
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
@@ -34,13 +33,9 @@ export class HomeComponent implements OnInit {
   isLoading: boolean = true;
   message: any;
 
-  constructor(private userService: UserService, private apiService: ApiService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getMessage().subscribe(data => {
-      this.message = data;
-    });
-
     this.apiService.getLastRecipes(3).subscribe(recipes => {
       this.recipes = recipes;
     })

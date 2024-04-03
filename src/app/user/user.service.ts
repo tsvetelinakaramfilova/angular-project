@@ -71,6 +71,15 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
+  changePassword(password: string, newPassword: string){
+    return this.http
+      .put<User>('/api/users/password', {
+        password,
+        newPassword
+      })
+      .pipe(tap((user) => this.user$$.next(user)));
+  }
+
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
   }

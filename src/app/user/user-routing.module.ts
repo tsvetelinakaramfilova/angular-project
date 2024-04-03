@@ -6,6 +6,7 @@ import { AuthActivate } from '../guards/auth.activate';
 import { RegistrationComponent } from './registration/registration.component';
 import { GuestActivate } from '../guards/guest.activate';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
+import { EditPasswordComponent } from './edit-password/edit-password.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [GuestActivate] },
@@ -16,6 +17,10 @@ const routes: Routes = [
   },
   {
     path: 'profile/edit', component: ProfileEditComponent,
+    canActivate: [AuthActivate]
+  },
+  {
+    path: 'profile/password', component: EditPasswordComponent,
     canActivate: [AuthActivate]
   },
 ];
